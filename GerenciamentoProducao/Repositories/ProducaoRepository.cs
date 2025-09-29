@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GerenciamentoProducao.Repositories
 {
-    public class ProducaoRepository : ÍProducaoRepository
+    public class ProducaoRepository : IProducaoRepository
     {
         private readonly GerenciamentoProdDbContext _context;
         public ProducaoRepository(GerenciamentoProdDbContext context)
@@ -34,10 +34,9 @@ namespace GerenciamentoProducao.Repositories
 
         }
 
-        public async Task<Producao> GetById(int id)
+        public async Task<Producao> GetByIdAsync(int id)
         {
             return await _context.Producoes.FindAsync(id);
-
         }
 
         public async Task UpdateAsync(Producao producao)
