@@ -12,6 +12,7 @@ public class UsuarioViewModel
     public string Senha { get; set; }
     public string Telefone { get; set; }
     public int IdTipoUsuario { get; set; }
+    public bool Ativo { get; set; } = true;
 
     //colecao para popular o dropdownlist
     public IEnumerable<SelectListItem>? TiposUsuario { get; set; }

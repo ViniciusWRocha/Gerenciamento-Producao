@@ -21,6 +21,9 @@ namespace GerenciamentoProducao.Models
         [StringLength(14)]
         public string Telefone { get; set; }
 
+        [Required(ErrorMessage = "Campo Obrigatório")]
+        public bool Ativo { get; set; } = true;
+
         public int IdTipoUsuario { get; set; }
         public virtual TipoUsuario? TipoUsuario { get; set; }
 
