@@ -21,7 +21,7 @@ namespace GerenciamentoProducao.Repositories
         public async Task DeleteAsync(int id)
         {
             var FamiliaCaixilho = await _context.FamCaixilhos.FindAsync(id);
-            if (FamiliaCaixilho == null)
+            if (FamiliaCaixilho != null)
             {
                 _context.FamCaixilhos.Remove(FamiliaCaixilho);
                 _context.SaveChangesAsync();
