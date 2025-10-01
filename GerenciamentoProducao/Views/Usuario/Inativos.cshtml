@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GerenciamentoProducao.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inativos";
 }
 
-<h1>Index</h1>
+<h1>Inativos</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -55,11 +55,17 @@
                 @Html.DisplayFor(modelItem => item.IdTipoUsuario)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdUsuario">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdUsuario">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdUsuario">Delete</a>
+                    <!-- Botão para reativar usuário -->
+                    <a asp-action="Ativar" asp-route-id="@item.IdUsuario"
+                       class="btn btn-sm btn-success">Ativar</a>
+                    <!--
+                       Tag Helper asp-action="Ativar": chama a Action "Ativar" no UsuarioController
+                       asp-route-id: envia o Id do usuário na rota
+                    -->
             </td>
         </tr>
 }
     </tbody>
 </table>
+<!-- Botão para voltar à listagem principal -->
+<a asp-action="Index" class="btn btn-secondary">Voltar</a>

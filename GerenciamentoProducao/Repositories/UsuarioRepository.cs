@@ -21,10 +21,40 @@ namespace GerenciamentoProducao.Repositories
         public async Task Delete(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
-            if(usuario == null)
+            if(usuario != null)
             {
                 _context.Usuarios.Remove(usuario);
                 _context.SaveChanges();
+            }
+        }
+
+
+
+        //read ativos
+        public async Task<List<Usuario>> GetAllAtivosAsync()
+        {
+            return await _context.Usuarios.Where(u => u.Ativo).Include(u => u.TipoUsuario).ToListAsync();
+        }
+
+        //inativar
+        public async Task InativarAsync(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario != null && usuario.Ativo)
+            {
+                usuario.Ativo = false;
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        //reativar
+        public async Task ReativarAsync(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario != null && !usuario.Ativo)
+            {
+                usuario.Ativo = true;
+                await _context.SaveChangesAsync();
             }
         }
 

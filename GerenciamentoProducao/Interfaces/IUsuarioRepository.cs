@@ -8,10 +8,13 @@ namespace GerenciamentoProducao.Interfaces
         Task<List<Usuario>> GetAllAsync();
 
         Task<Usuario> GetById(int id);
+        Task<List<Usuario>> GetAllAtivosAsync();
         Task AddAsync(Usuario usuario);
         Task UpdateAsync(Usuario usuario);
         Task Delete(int id);
+        Task InativarAsync(int id);
+        Task ReativarAsync(int id);
         Task<Usuario>? ValidarLoginAsync(string email, string senha);
-
+       
     }
 }

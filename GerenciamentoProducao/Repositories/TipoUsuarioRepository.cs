@@ -21,7 +21,7 @@ namespace GerenciamentoProducao.Repositories
         public async Task DeleteAsync(int id)
         {
             var tipoUsuario = await _context.TipoUsuarios.FindAsync(id);
-            if (tipoUsuario == null)
+            if (tipoUsuario != null)
             {
                 _context.TipoUsuarios.Remove(tipoUsuario);
                 _context.SaveChangesAsync();
