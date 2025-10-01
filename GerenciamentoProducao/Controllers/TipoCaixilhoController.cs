@@ -1,5 +1,6 @@
 ﻿using GerenciamentoProducao.Interfaces;
 using GerenciamentoProducao.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoProducaoo.Controllers
@@ -14,10 +15,13 @@ namespace GerenciamentoProducaoo.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var lista = _tipoCaixilhoRepository.GetAllAsync();
+            var lista = await _tipoCaixilhoRepository.GetAllAsync();
             return View(lista);
         }
+        [HttpGet]
         public IActionResult Create() => View();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TipoCaixilho tipoCaixilho)
         {
             if (ModelState.IsValid)
@@ -27,7 +31,7 @@ namespace GerenciamentoProducaoo.Controllers
             }
             return View(tipoCaixilho);
         }
-
+        //[HttpPut]
         public async Task<IActionResult> Edit(int id)
         {
             var tipoCaixilho = await _tipoCaixilhoRepository.GetById(id);
@@ -50,7 +54,7 @@ namespace GerenciamentoProducaoo.Controllers
             }
             return View(tipoCaixilho);
         }
-        // [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin
         public async Task<IActionResult> Delete(int id) { 
             var item = await _tipoCaixilhoRepository.GetById(id);
             if (item == null) return NotFound();
@@ -58,8 +62,8 @@ namespace GerenciamentoProducaoo.Controllers
         }
         //autorize aqui tbm
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _tipoCaixilhoRepository.DeleteAsync(id);

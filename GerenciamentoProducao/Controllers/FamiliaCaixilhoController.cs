@@ -1,6 +1,7 @@
 ﻿using GerenciamentoProducao.Data;
 using GerenciamentoProducao.Interfaces;
 using GerenciamentoProducao.Models;
+using GerenciamentoProducao.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoProducao.Controllers
@@ -12,7 +13,6 @@ namespace GerenciamentoProducao.Controllers
         public FamiliaCaixilhoController(IFamiliaCaixilhoRepository familiaCaixilhoRepository)
         {
             _familiaCaixilhoRepository = familiaCaixilhoRepository;
-;
         }
 
         public async Task<IActionResult> Index()
@@ -26,7 +26,7 @@ namespace GerenciamentoProducao.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAsync(FamiliaCaixilho familia)
+        public async Task<IActionResult> Create(FamiliaCaixilho familia)
         {
             if (ModelState.IsValid)
             {
@@ -35,7 +35,7 @@ namespace GerenciamentoProducao.Controllers
             }
             return View(familia);
         }
-        public async Task<ActionResult> EditAsync(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             var familia = await _familiaCaixilhoRepository.GetByIdAsync(id);
             if (familia == null)
@@ -46,7 +46,7 @@ namespace GerenciamentoProducao.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditAsync(int id, FamiliaCaixilho familia)
+        public async Task<IActionResult> Edit(int id, FamiliaCaixilho familia)
         {
             if (id != familia.IdFamiliaCaixilho)
             {
@@ -62,12 +62,10 @@ namespace GerenciamentoProducao.Controllers
         }
         public async Task<IActionResult> Delete(int id)
         {
-            var familia = await _familiaCaixilhoRepository.GetByIdAsync(id);
-            if (familia == null)
-            {
-                return NotFound();
-            }
-            return View(familia);
+            
+            var item = await _familiaCaixilhoRepository.GetByIdAsync(id);
+            if (item == null) return NotFound();
+            return View(item);
         }
 
 
@@ -80,14 +78,14 @@ namespace GerenciamentoProducao.Controllers
         }
 
 
-        public async Task<IActionResult> Details(int id)
-        {
-            var familia = await _familiaCaixilhoRepository.GetByIdAsync(id);
-            if (familia == null)
-            {
-                return NotFound();
-            }
-            return View(familia);
-        }
+        //public async Task<IActionResult> Details(int id)
+        //{
+        //    var familia = await _familiaCaixilhoRepository.GetByIdAsync(id);
+        //    if (familia == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(familia);
+        //}
     }
 }
