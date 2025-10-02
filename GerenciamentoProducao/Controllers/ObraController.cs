@@ -8,14 +8,23 @@ namespace GerenciamentoProducaoo.Controllers
     public class ObraController : Controller
     {
         private readonly IObraRepository _obraRepository;
-        public IActionResult Index()
+        public ObraController(IObraRepository obraRepository)
         {
-            var lista = _obraRepository.GetAllAsync();
+            _obraRepository = obraRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var lista = await _obraRepository.GetAllAsync();
             return View(lista);
         }
+        [HttpGet]
+
         public IActionResult Create() => View();
         //[Authorize(Roles = "Admin")]
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Obra obra)
         {
             if (ModelState.IsValid)
@@ -35,7 +44,7 @@ namespace GerenciamentoProducaoo.Controllers
         }
         //[Authorize(Roles = "Admin")]
 
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Obra obra)
         {

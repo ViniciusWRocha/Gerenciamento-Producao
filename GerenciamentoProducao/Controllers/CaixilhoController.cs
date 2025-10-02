@@ -29,15 +29,14 @@ namespace GerenciamentoProducaoo.Controllers
             return new CaixilhoViewModel
             {
                 IdCaixilho = model?.IdCaixilho ?? 0,
-                NomeCaixilho = model.NomeCaixilho,
-                Largura = model.Largura,
-                Altura = model.Altura,
-                Quantidade = model.Quantidade,
-                PesoUnitario = model.PesoUnitario,
-
-                ObraId = model.ObraId,
-                IdFamiliaCaixilho = model.IdFamiliaCaixilho,
-                IdTipoCaixilho = model.IdTipoCaixilho,
+                NomeCaixilho = model?.NomeCaixilho,
+                Largura = model?.Largura ?? 0,
+                Altura = model?.Altura ?? 0,
+                Quantidade = model?.Quantidade ?? 0,
+                PesoUnitario = model?.PesoUnitario ?? 0,
+                ObraId = model?.ObraId ?? 0,
+                IdFamiliaCaixilho = model?.IdFamiliaCaixilho ?? 0,
+                IdTipoCaixilho = model?.IdTipoCaixilho ?? 0,
                 //Dropdrowns 
                 Obra = obras.Select(o => new SelectListItem
                 {
@@ -56,21 +55,6 @@ namespace GerenciamentoProducaoo.Controllers
                 })
             };
         }
-
-
-
-
-        //public IActionResult Index()//int? obraId, string? search
-        //{
-        //    // Fazer filtro por nome da obra, familia de caixilho e tipo de caixilho
-
-        //    //var caixilhos = _caixilhoRepository.GetAllAsync();
-        //    //if(obraId.HasValue && obraId.Value > 0)
-        //    //{
-        //    //    caixilhos = caixilhos.
-        //    //}
-        //    return View();
-        //}
         public async Task<IActionResult> Index()
         {
             var caixilhos = await _caixilhoRepository.GetAllAsync();
@@ -86,7 +70,7 @@ namespace GerenciamentoProducaoo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CaixilhoViewModel caixilhoViewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 // Mapear ViewModel para Model
                 var caixilho = new Caixilho
