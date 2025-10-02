@@ -1,4 +1,4 @@
-﻿@model GerenciamentoProducao.Models.Caixilho
+﻿@model GerenciamentoProducaoo.ViewModel.CaixilhoViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -13,47 +13,56 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdCaixilho" />
+
             <div class="form-group">
                 <label asp-for="NomeCaixilho" class="control-label"></label>
                 <input asp-for="NomeCaixilho" class="form-control" />
                 <span asp-validation-for="NomeCaixilho" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Largura" class="control-label"></label>
                 <input asp-for="Largura" class="form-control" />
                 <span asp-validation-for="Largura" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Altura" class="control-label"></label>
                 <input asp-for="Altura" class="form-control" />
                 <span asp-validation-for="Altura" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
                 <input asp-for="Quantidade" class="form-control" />
                 <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="PesoUnitario" class="control-label"></label>
                 <input asp-for="PesoUnitario" class="form-control" />
                 <span asp-validation-for="PesoUnitario" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="ObraId" class="control-label"></label>
-                <select asp-for="ObraId" class="form-control" asp-items="ViewBag.ObraId"></select>
+                <label asp-for="ObraId" class="form-label"></label>
+                <select asp-for="ObraId" asp-items="Model.Obra" class="form-select"></select>
                 <span asp-validation-for="ObraId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="IdFamiliaCaixilho" class="control-label"></label>
-                <input asp-for="IdFamiliaCaixilho" class="form-control" />
+                <label asp-for="IdFamiliaCaixilho" class="form-label"></label>
+                <select asp-for="IdFamiliaCaixilho" asp-items="Model.FamiliaCaixilho" class="form-select"></select>
                 <span asp-validation-for="IdFamiliaCaixilho" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="IdTipoCaixilho" class="control-label"></label>
-                <input asp-for="IdTipoCaixilho" class="form-control" />
+                <label asp-for="IdTipoCaixilho" class="form-label"></label>
+                <select asp-for="IdTipoCaixilho" asp-items="Model.TipoCaixilho" class="form-select"></select>
                 <span asp-validation-for="IdTipoCaixilho" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="form-group mt-3">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -65,5 +74,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

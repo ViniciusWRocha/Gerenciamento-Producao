@@ -22,7 +22,7 @@ namespace GerenciamentoProducao.Repositories
         public async Task DeleteAsync(int id)
         {
             var caixilho = await _context.Caixilhos.FindAsync(id);
-            if (caixilho == null)
+            if (caixilho != null)
             {
                 _context.Caixilhos.Remove(caixilho);
                 _context.SaveChangesAsync();

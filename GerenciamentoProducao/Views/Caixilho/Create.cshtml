@@ -1,4 +1,5 @@
-﻿@model GerenciamentoProducao.Models.Caixilho
+﻿@model GerenciamentoProducaoo.ViewModel.CaixilhoViewModel
+
 
 @{
     ViewData["Title"] = "Create";
@@ -38,18 +39,20 @@
                 <span asp-validation-for="PesoUnitario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ObraId" class="control-label"></label>
-                <select asp-for="ObraId" class ="form-control" asp-items="ViewBag.ObraId"></select>
+                <label asp-for="ObraId" class="form-label"></label>
+                <select asp-for="ObraId" asp-items="Model.Obra" class="form-select"></select>
+            
             </div>
             <div class="form-group">
-                <label asp-for="IdFamiliaCaixilho" class="control-label"></label>
-                <input asp-for="IdFamiliaCaixilho" class="form-control" />
-                <span asp-validation-for="IdFamiliaCaixilho" class="text-danger"></span>
+
+                <label asp-for="IdFamiliaCaixilho" class="form-label"></label>
+                <select asp-for="IdFamiliaCaixilho" asp-items="Model.FamiliaCaixilho" class="form-select"></select>
+                
             </div>
             <div class="form-group">
-                <label asp-for="IdTipoCaixilho" class="control-label"></label>
-                <input asp-for="IdTipoCaixilho" class="form-control" />
-                <span asp-validation-for="IdTipoCaixilho" class="text-danger"></span>
+                <label asp-for="IdTipoCaixilho" class="form-label"></label>
+                <select asp-for="IdTipoCaixilho" asp-items="Model.TipoCaixilho" class="form-select"></select>
+              
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
