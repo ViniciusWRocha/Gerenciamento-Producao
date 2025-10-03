@@ -17,6 +17,7 @@ builder.Services.AddScoped<ITipoCaixilhoRepository, TipoCaixilhoRepository>();
 builder.Services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
 builder.Services.AddScoped<IFamiliaCaixilhoRepository, FamiliaCaixilhoRepository>();
 builder.Services.AddScoped<IObraRepository, ObraRepository>();
+builder.Services.AddScoped<IProducaoRepository, ProducaoRepository>();
 
 //builder.Services.AddScoped<ICaixilhoRepository, Caixi>
 // Add services to the container.

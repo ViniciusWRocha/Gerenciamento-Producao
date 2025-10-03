@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GerenciamentoProducao.Models.Producao>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeProducao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataProducao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produzido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EhLiberado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FamiliaCaixilho)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeProducao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataProducao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produzido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EhLiberado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FamiliaCaixilho.IdFamiliaCaixilho)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdProducao">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdProducao">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdProducao">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -13,6 +13,9 @@ namespace GerenciamentoProducaoo.ViewModel
         public string? Descricao { get; set; }
         public bool EhLiberado { get; set; }
 
+        public int UsuarioId { get; set; }
+        public int FamiliaCaixilhoId { get; set; }
+
 
         public IEnumerable<SelectListItem>? Usuario { get; set; }
 
